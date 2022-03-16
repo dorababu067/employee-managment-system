@@ -1,0 +1,37 @@
+{% extends "base.html" %} {%block content%}
+<h1>Employee Management System</h1>
+<hr />
+<br />
+
+<form action="" method="GET">
+  <div class="d-flex">
+    <input type="date" name="date_of_joining" class="form-control" />
+    <input type="submit" class="btn btn-primary" value="search" />
+  </div>
+</form>
+<br />
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Employee ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Department</th>
+      <th scope="col">Date Of Joining</th>
+      <th scope="col">Date Of Birth</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for employee in page_obj %}
+    <tr>
+      <!-- <th scope="row">1</th> -->
+      <td>{{ employee.emp_id }}</td>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.department }}</td>
+      <td>{{ employee.date_of_joining }}</td>
+      <td>{{ employee.date_of_birth }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% include "pagination.html" %} {% endblock content%}
