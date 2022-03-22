@@ -8,7 +8,13 @@ from .filters import EmployeeFilter
 
 def index(request):
     # filter based on the input date
-    queryset = EmployeeFilter(request.GET, queryset=Employee.objects.all()).qs
+    # queryset = EmployeeFilter(request.GET, queryset=Employee.objects.all()).qs
+
+    q = request.GET.get("date_of_joining", None)
+    if q is not None:
+        queryset = Employee.objects.filter(date_of_joining=q)
+    else:
+        queryset = Employee.objects.all()
 
     # paginating the employee objects
     page_num = request.GET.get("page", 1)
